@@ -26,46 +26,20 @@ def print_list_dict(loop_dict, orig_n):
 # Finds the index where a number occurs in pi
 # indexing is for what index system to use, usually 0 or 1 based
 def find_index(pi_str, n, indexing):
-    match = True
-    str_n = str(n)
-    # Indexing based on 1
-    indx = indexing
-    while True:
-        # Remove -1 if 0 indexing, and vice versa for 1 indexing
-        try:
-            ch = pi_str[indx - indexing]
-        except:
-            return -1
-        # Tests if first character of string is present
-        if ch == str_n[0]:
-            # Tests if entire string is present
-            for i in range(1, len(str_n)):
-                try:
-                    ch = pi_str[indx - indexing + i]
-                except:
-                    return -1
-                if ch != str_n[i]:
-                    match = False
-                    break
-            if match == True:
-                return indx
-            match = True
-        indx += 1
-
-    # Never should reach this point
-    return -1
-
+    try:
+        return indexing + pi_str.index(str(n))
+    except:
+        return -1
 
 # Returns dictionary of values if any loop exists
 # Also returns flag: Returns 0 if no loop exists for pi_str, -1 if 'invalid
 # loop', 1 if proper loop
 def pi_number_loop(pi_str, orig_n, indexing):
     n = orig_n
-    # Creates a dictionary that allows O(1) avg lookup time, with O(2n) -> O(n)
-    # storage space
-    # In hindsight, a list would have been simpler, as no loop within a
-    # reasonable range of pi is
-    # sufficiently large to benefit from this runtime consideration
+    # Creates a dictionary that allows O(1) avg lookup time,
+    # with O(2n) -> O(n) storage space
+    # In hindsight, a list would have been simpler, as loops
+    # within a billion digits of pi seem to be small
     loop_dict = {}
 
     # Constrcts the dictionary
