@@ -31,7 +31,7 @@ https://www.youtube.com/watch?v=W20aT14t8Pw
  ```
 
 ## Another Example of This Being Used
-All index one numbers from 1 to 100000 that have a proper loop (using PI up to a million digits):
+All (indexing = 1) numbers from 1 to 100000 that have a proper loop (using PI up to a million digits):
 ```python
 print([i for i in range(int(1e6)) if pi_number_loop(pi_str, i, 1)[1] == 1])
 ```
